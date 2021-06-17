@@ -1,18 +1,22 @@
+<div id="questions">
 <% if @allAnswered %>
 <h3> This time, you answered  <%= @succesfulCount%>/<%=@totalCount %> questions correctly.</h3>
+<br><br>
 <% @prevAttempts.each do |entry| %>
     <p><%= entry %></p>
  <% end %>  
+ <br>
 <a href="/home/reloadQuiz"><button class='btn btn-success'>Reload</button></a>
 <% else %>
-<h3><%= @currQuestion%></h3>
+<h3><%= @currQuestion%></h3><br>
 <%= form_with url: "/home/submit", method: :post do |f| %>
 <% @currAnswers.each do |answer| %>
     <%= f.radio_button :response, answer , :required => true %>
     <%= f.label :answer, answer %><br>
  <% end %>
  <%= f.hidden_field :currID, value: @currID %>
-    <br><br>
+<br>
     <%= f.submit "Submit", class:"btn btn-default" %>
 <% end %>
 <% end %>
+</div>

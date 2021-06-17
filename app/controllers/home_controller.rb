@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   def index
     cookies.delete :completedCount
     cookies.delete :success
+    session.clear
   end
 
   def setTotal
