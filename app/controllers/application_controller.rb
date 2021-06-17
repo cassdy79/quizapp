@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
         if Question.all.size == 0
             quizFile = File.read('./quiz.json')
             quizzes = JSON.parse(quizFile)
-            stored = []
             for quiz in quizzes do
                 id = quiz['id']
                 question = quiz['question']

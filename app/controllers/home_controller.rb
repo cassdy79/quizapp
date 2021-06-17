@@ -2,8 +2,12 @@ class HomeController < ApplicationController
 
   def index
     @memoryCount = 0
+    @memoryCategory = "Linux"
     if cookies[:totalCount]
       @memoryCount = cookies[:totalCount].to_i
+    end
+    if cookies[:category]
+      @memoryCategory = cookies[:category]
     end
     if cookies[:zero]
       @invalidChoice = true
@@ -18,12 +22,24 @@ class HomeController < ApplicationController
     if params[:number] == "0"
       cookies[:zero] = true
       cookies[:totalCount] = 0
+      cookies[:category] = params[:category]
       redirect_to("/home")
     else
       cookies[:totalCount] = params[:number]
+      cookies[:category] = params[:category]
+      destroyValues()
+      setValues(params[:category])
       redirect_to("/home/quiz")
     end
   end
+
+  def destroyValues
+    values = Question.all
+    for value in values do
+      value.destroy
+    end
+  end
+
 
   def quiz
     
@@ -174,4 +190,62 @@ class HomeController < ApplicationController
     return storedArray
   end
 
+  
+  def setValues(category)
+    begin
+      response = RestClient::Request.execute(method: :get, url:"https://quizapi.io/api/v1/questions", 
+        headers: {params: {:apiKey => 'CsC8hCmPMmez5RP1DAypWVyF8Vanh40B3aUonBwm', 
+          :limit => 20, :category => category, :difficulty => "easy"}})
+    
+  
+    #
+
+    rescue RestClient::Exception => e       
+      puts e
+    end   
+    quizzes = nil
+    if response == nil
+      quizFile = File.read('./quiz.json')
+      quizzes = JSON.parse(quizFile)
+    else
+      quizzes = JSON.parse(response)
+    end
+    for quiz in quizzes do
+        id = quiz['id']
+        question = quiz['question']
+        description = quiz['description']
+        multiple_correct_answers = quiz['multiple_correct_answers']
+        explanation = quiz['explanation']
+        tip = quiz['tip']
+        tags = ""
+        if quiz['tip']
+            for tag in quiz['tags'] do
+                tags += ", "
+                tags += tag['name']
+            end
+            tags = tags[2..-1]
+        else
+            tags = quiz['tip']
+        end
+        category = quiz['category']
+        difficulty = quiz['difficulty']
+        answer_a = quiz['answers']['answer_a']
+        answer_b = quiz['answers']['answer_b']
+        answer_c = quiz['answers']['answer_c']
+        answer_d = quiz['answers']['answer_d']
+        answer_e = quiz['answers']['answer_e']
+        answer_f = quiz['answers']['answer_f']
+        answer_a_correct = quiz['correct_answers']['answer_a_correct']
+        answer_b_correct = quiz['correct_answers']['answer_b_correct']
+        answer_c_correct = quiz['correct_answers']['answer_c_correct']
+        answer_d_correct = quiz['correct_answers']['answer_d_correct']
+        answer_e_correct = quiz['correct_answers']['answer_e_correct']
+        answer_f_correct = quiz['correct_answers']['answer_f_correct']
+        Question.create(id: id, question: question, description:description, multiple_correct_answers: multiple_correct_answers,
+        explanation: explanation, tip: tip, tags: tags, category: category, difficulty: difficulty, answer_a: answer_a,
+        answer_b: answer_b, answer_c: answer_c, answer_d: answer_d, answer_e: answer_e, answer_f: answer_f, answer_a_correct: answer_a_correct,
+        answer_b_correct: answer_b_correct, answer_c_correct: answer_c_correct, answer_d_correct: answer_d_correct,
+        answer_e_correct: answer_e_correct, answer_f_correct: answer_f_correct)
+    end
+  end
 end

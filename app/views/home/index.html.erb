@@ -1,12 +1,14 @@
 <h1>Welcome! Would you like to attempt an easy quiz?</h1>
 
 <div id="questionTotal">
-<p>Please choose the number of questions you would like to attempt from a range of 4-8.</p>
+<b>Please choose the number of questions to attempt.</b>
 <span>
 <%= form_with url: "/home/setTotal", method: :post do |f| %>
 <%= f.select :number, [["--", 0], ["Four", 4], ["Five", 5], ["Six", 6], ["Seven", 7],
-                        ["Eight", 8]],  selected: @memoryCount %>
-
+                        ["Eight", 8]],  selected: @memoryCount %><br><br>
+<b>Please choose the category.</b><br>
+<%= f.select :category, [["Linux", "Linux"], ["DevOps", "DevOps"], ["Docker", "Docker"], ["Code", "Code"]],  
+                        selected: @memoryCategory %>
 <br><br>
 <%= f.submit "Attempt Quiz", class:"btn btn-info" %>
 <% end %>
