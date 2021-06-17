@@ -2,12 +2,12 @@
 ### quizAPI apiKey=CsC8hCmPMmez5RP1DAypWVyF8Vanh40B3aUonBwm
 ### Heroku deployment url = https://quiz-app-79.herokuapp.com/
 ### Heroku deployment logs 
-Enumerating objects: 9, done.
-Counting objects: 100% (9/9), done.
+Enumerating objects: 27, done.
+Counting objects: 100% (27/27), done.
 Delta compression using up to 12 threads
-Compressing objects: 100% (5/5), done.
-Writing objects: 100% (5/5), 2.06 KiB | 2.06 MiB/s, done.
-Total 5 (delta 3), reused 0 (delta 0), pack-reused 0
+Compressing objects: 100% (15/15), done.
+Writing objects: 100% (15/15), 1.67 KiB | 1.67 MiB/s, done.
+Total 15 (delta 10), reused 0 (delta 0), pack-reused 0
 remote: Compressing source files... done.
 remote: Building source:
 remote:
@@ -82,7 +82,7 @@ remote:        Using uglifier 4.2.0
 remote:        Bundle complete! 19 Gemfile dependencies, 59 gems now installed.
 remote:        Gems in the groups 'development' and 'test' were not installed.
 remote:        Bundled gems are installed into `./vendor/bundle`
-remote:        Bundle completed (0.47s)
+remote:        Bundle completed (0.48s)
 remote:        Cleaning up the bundler cache.
 remote: -----> Installing node-v12.16.2-linux-x64
 remote: -----> Detecting rake tasks
@@ -90,7 +90,9 @@ remote: -----> Preparing app for Rails asset pipeline
 remote:        Running: rake assets:precompile
 remote:        Yarn executable was not detected in the system.
 remote:        Download Yarn at https://yarnpkg.com/en/docs/install
-remote:        Asset precompilation completed (1.36s)
+remote:        I, [2021-06-17T14:39:37.332406 #312]  INFO -- : Writing /tmp/build_c2b4c4ed/public/assets/application-6827183c808bf7dddc410c7bdd47b7e8c4c2f61280cf6a03cb51bb532ff91f21.css
+remote:        I, [2021-06-17T14:39:37.333032 #312]  INFO -- : Writing /tmp/build_c2b4c4ed/public/assets/application-6827183c808bf7dddc410c7bdd47b7e8c4c2f61280cf6a03cb51bb532ff91f21.css.gz
+remote:        Asset precompilation completed (1.41s)
 remote:        Cleaning assets
 remote:        Running: rake assets:clean
 remote: -----> Detecting rails configuration
@@ -107,13 +109,11 @@ remote:        Procfile declares types     -> (none)
 remote:        Default types for buildpack -> console, rake, web
 remote:
 remote: -----> Compressing...
-remote:        Done: 49.4M
+remote:        Done: 49.3M
 remote: -----> Launching...
-remote:        Released v9
+remote:        Released v10
 remote:        https://quiz-app-79.herokuapp.com/ deployed to Heroku
 remote:
 remote: Verifying deploy... done.
 To https://git.heroku.com/quiz-app-79.git
-   c86cd1a..cf5a393  main -> main
-
-
+   cf5a393..4fdcbd8  main -> main

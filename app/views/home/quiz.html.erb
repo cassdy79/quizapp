@@ -7,6 +7,7 @@
  <% end %>  
  <br>
 <a href="/home/reloadQuiz"><button class='btn btn-success'>Reload</button></a>
+<a href="/home"><button class='btn btn-info'>Home</button></a>
 <% else %>
 <h3>Category: <%= @category%></h3>
 <h4><%= @currQuestion%></h4><br>
@@ -19,5 +20,6 @@
 <br>
     <%= f.submit "Submit", class:"btn btn-default" %>
 <% end %>
+
 <% end %>
 </div>

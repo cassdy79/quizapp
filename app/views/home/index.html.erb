@@ -11,5 +11,9 @@
 <%= f.submit "Attempt Quiz", class:"btn btn-default" %>
 <% end %>
 </span>
+<% if @invalidChoice  %>
+<br>
+    <b>Please enter valid number.</b>
 
+<% end %>
 </div>

@@ -5,6 +5,10 @@ class HomeController < ApplicationController
     if cookies[:totalCount]
       @memoryCount = cookies[:totalCount].to_i
     end
+    if cookies[:zero]
+      @invalidChoice = true
+      @memoryCount = 0
+    end
     cookies.delete :completedCount
     cookies.delete :success
     cookies.delete :zero
@@ -13,6 +17,7 @@ class HomeController < ApplicationController
 
   def setTotal
     if params[:number] == "0"
+      cookies[:zero] = true
       redirect_to("/home")
     else
       cookies[:totalCount] = params[:number]
@@ -21,6 +26,7 @@ class HomeController < ApplicationController
   end
 
   def quiz
+    
     if cookies[:totalCount]
       totalCount = cookies[:totalCount].to_i
     else
