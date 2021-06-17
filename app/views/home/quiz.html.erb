@@ -8,7 +8,8 @@
  <br>
 <a href="/home/reloadQuiz"><button class='btn btn-success'>Reload</button></a>
 <% else %>
-<h3><%= @currQuestion%></h3><br>
+<h3>Category: <%= @category%></h3>
+<h4><%= @currQuestion%></h4><br>
 <%= form_with url: "/home/submit", method: :post do |f| %>
 <% @currAnswers.each do |answer| %>
     <%= f.radio_button :response, answer , :required => true %>

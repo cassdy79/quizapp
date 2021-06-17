@@ -4,8 +4,12 @@
 <p>Please choose the number of questions you would like to attempt from a range of 4-8.</p>
 <span>
 <%= form_with url: "/home/setTotal", method: :post do |f| %>
-<%= f.number_field :number, in: 4.0..8.0, step: 1.0 , :required => true  %>
+<%= f.select :number, [["--", 0], ["Four", 4], ["Five", 5], ["Six", 6], ["Seven", 7],
+                        ["Eight", 8]],  selected: @memoryCount %>
+
+<br><br>
 <%= f.submit "Attempt Quiz", class:"btn btn-default" %>
 <% end %>
 </span>
+
 </div>

@@ -1,15 +1,23 @@
 class HomeController < ApplicationController
 
   def index
+    @memoryCount = 0
+    if cookies[:totalCount]
+      @memoryCount = cookies[:totalCount].to_i
+    end
     cookies.delete :completedCount
     cookies.delete :success
-    cookies.delete :totalCount
+    cookies.delete :zero
     session.clear
   end
 
   def setTotal
-    cookies[:totalCount] = params[:number]
-    redirect_to("/home/quiz")
+    if params[:number] == "0"
+      redirect_to("/home")
+    else
+      cookies[:totalCount] = params[:number]
+      redirect_to("/home/quiz")
+    end
   end
 
   def quiz
@@ -18,6 +26,7 @@ class HomeController < ApplicationController
     else
       redirect_to("/home")
     end
+
     count = -1
     if cookies[:completedCount]
       count = cookies[:completedCount].to_i
@@ -48,7 +57,9 @@ class HomeController < ApplicationController
       for value in values do
         quizlist << quizzes.find(value)
       end
+       
       currentQuiz = quizlist[count]
+      @category = currentQuiz.category
       @currQuestion = currentQuiz.question
       @currID = currentQuiz.id
       @currAnswers = []
@@ -144,17 +155,16 @@ class HomeController < ApplicationController
       cookies.permanent[:history] = formattedString
     end
 
-    if storedArray.size == 6
+    if storedArray.size > 6
       newFormattedString = ""
       storedArray[0..4].each do |array|
         newFormattedString += array
         newFormattedString += "|"
       end
       newFormattedString = newFormattedString[0..-1]
-      cookies.permanent[:history] = newFormattedString
+      #cookies.permanent[:history] = newFormattedString
       storedArray = newFormattedString.split("|")
     end
-    
     return storedArray
   end
 
