@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   def index
     cookies.delete :completedCount
     cookies.delete :success
+    cookies.delete :totalCount
     session.clear
   end
 
@@ -12,12 +13,16 @@ class HomeController < ApplicationController
   end
 
   def quiz
-    totalCount = cookies[:totalCount].to_i
+    if cookies[:totalCount]
+      totalCount = cookies[:totalCount].to_i
+    else
+      redirect_to("/home")
+    end
     count = -1
     if cookies[:completedCount]
       count = cookies[:completedCount].to_i
     else
-      cookies[:completedCount] = { value: -1, expires: 1.hour }
+      cookies[:completedCount] = -1
     end
     quizlist = []
     quizzes = Question.all
