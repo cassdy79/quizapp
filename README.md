@@ -6,8 +6,8 @@ Enumerating objects: 9, done.
 Counting objects: 100% (9/9), done.
 Delta compression using up to 12 threads
 Compressing objects: 100% (5/5), done.
-Writing objects: 100% (5/5), 501 bytes | 501.00 KiB/s, done.
-Total 5 (delta 4), reused 0 (delta 0), pack-reused 0
+Writing objects: 100% (5/5), 2.06 KiB | 2.06 MiB/s, done.
+Total 5 (delta 3), reused 0 (delta 0), pack-reused 0
 remote: Compressing source files... done.
 remote: Building source:
 remote:
@@ -79,7 +79,7 @@ remote:        Using sass-rails 5.1.0
 remote:        Using turbolinks-source 5.2.0
 remote:        Using turbolinks 5.2.1
 remote:        Using uglifier 4.2.0
-remote:        Bundle complete! 18 Gemfile dependencies, 59 gems now installed.
+remote:        Bundle complete! 19 Gemfile dependencies, 59 gems now installed.
 remote:        Gems in the groups 'development' and 'test' were not installed.
 remote:        Bundled gems are installed into `./vendor/bundle`
 remote:        Bundle completed (0.47s)
@@ -90,7 +90,7 @@ remote: -----> Preparing app for Rails asset pipeline
 remote:        Running: rake assets:precompile
 remote:        Yarn executable was not detected in the system.
 remote:        Download Yarn at https://yarnpkg.com/en/docs/install
-remote:        Asset precompilation completed (1.33s)
+remote:        Asset precompilation completed (1.36s)
 remote:        Cleaning assets
 remote:        Running: rake assets:clean
 remote: -----> Detecting rails configuration
@@ -107,12 +107,13 @@ remote:        Procfile declares types     -> (none)
 remote:        Default types for buildpack -> console, rake, web
 remote:
 remote: -----> Compressing...
-remote:        Done: 49.3M
+remote:        Done: 49.4M
 remote: -----> Launching...
-remote:        Released v8
+remote:        Released v9
 remote:        https://quiz-app-79.herokuapp.com/ deployed to Heroku
 remote:
 remote: Verifying deploy... done.
 To https://git.heroku.com/quiz-app-79.git
-   623dd30..c86cd1a  main -> main
+   c86cd1a..cf5a393  main -> main
+
 
