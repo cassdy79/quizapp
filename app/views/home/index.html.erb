@@ -1,0 +1,6 @@
+<h1>Welcome! Would you like to attempt an easy quiz?</h1>
+
+<%= form_with url: "/home/setTotal", method: :post do |f| %>
+<%= f.number_field :number, in: 4.0..8.0, step: 1.0 , :required => true  %>
+<%= f.submit "Attempt Quiz", class:"btn btn-default" %>
+<% end %>
